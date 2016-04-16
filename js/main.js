@@ -5,7 +5,7 @@ var canvas,
 
 //	Grid variables
 var TILE_S = 16,
-	COLS = 32,
+	COLS = 64,
 	ROWS = 32;
 
 //	"World" variables
@@ -22,7 +22,9 @@ function keyDownHandler(event)
 	switch(key)
 	{
 		case "W":
-			hero.vy = -12;
+			if (hero.onGround() == true) {
+				hero.vy = -20;
+			}
 			break;
 		case "S":
 			break;
@@ -58,7 +60,8 @@ function keyUpHandler(event)
 function init()
 {
 	//	Initialize the canvas and context
-	canvas = document.createElement("canvas");
+	//canvas = document.createElement("canvas");
+	canvas = document.getElementById("mainCanvas");
 	ctx = canvas.getContext("2d");
 	canvas.width = TILE_S * COLS;
 	canvas.height = TILE_S * ROWS;
@@ -74,7 +77,7 @@ function init()
 
 	//	Initialize actors
 	//	SHOULD BE KEPT INSIDE A DATA STRUCTURE
-	hero = new Square(16, 16, TILE_S, TILE_S);
+	hero = new Square(16, 16, 300, 300);
 	applyDraw(hero);
 	applyGravity(hero, GRAVITY);
 }
