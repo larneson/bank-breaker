@@ -1,8 +1,8 @@
 function Square(x, y, width, height)
 {
 	//	Size variables
-	this.width = 50;
-	this.height = 71;
+	this.width = 300;
+	this.height = 300;
 
 	//	Position
 	this.x = x;
@@ -51,6 +51,10 @@ function Square(x, y, width, height)
 		this.vy += this.ay;
 
 		//	BOUNDS CHECKING
+		if(this.onGround())	//	ON THE GROUND
+		{
+			this.y = canvas.height - this.height;
+		}
 		if(this.onRightWall())	//	RIGHT BOUND
 		{
 			this.x = canvas.width - this.width;
@@ -58,10 +62,6 @@ function Square(x, y, width, height)
 		else if(this.onLeftWall())	//	LEFT BOUND
 		{
 			this.x = 0;
-		}
-		else if(this.onGround())	//	ON THE GROUND
-		{
-			this.y = canvas.height - this.height;
 		}
 	};
 
