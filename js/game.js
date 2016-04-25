@@ -13,7 +13,7 @@ window.onload = function(e) {
     ctx.drawImage(bernieImage, 10, 10, 100, 100);
   }*/
 
-
+//hi link this is my change 
 
   var Sprite = function(options) {
 
