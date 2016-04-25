@@ -99,6 +99,18 @@ function loop()
 	}
 }
 
+function reset()
+{
+	score = 0;
+	SCROLL_SPEED = -2;
+	hero.speed = 10;
+	hero.x = 0;
+	hero.y = 0;
+	hero.vx = 0;
+	hero.vy = 0;
+	hero.ax = 0;
+}
+
 // Generates random actors
 function genRandoms()
 {

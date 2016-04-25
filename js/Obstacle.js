@@ -4,7 +4,7 @@ function Obstacle() {
     30, height, 'img/building.png']);
 
   this.collisionEvent = function() {
-			score = 0;
+			reset();
 	}
   this.vx = SCROLL_SPEED;
 
