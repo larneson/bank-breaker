@@ -1,12 +1,18 @@
-function Square(x, y, width, height)
+function Square(x, y, width, height, src)
 {
+	// Image
+	this.img = new Image();
+	this.img.src = src;
+
 	//	Size variables
-	this.width = 300;
-	this.height = 300;
+	this.width = width;
+	this.height = height;
 
 	//	Position
 	this.x = x;
 	this.y = y;
+
+	this.speed = 10;
 
 	//	Velocity
 	this.vx = 0;
@@ -44,6 +50,7 @@ function Square(x, y, width, height)
 	{
 		//	Apply velocity to position
 		this.x += this.vx;
+		this.x += SCROLL_SPEED;
 		this.y += this.vy;
 
 		//	Apply acceleration to velocity
@@ -51,11 +58,12 @@ function Square(x, y, width, height)
 		this.vy += this.ay;
 
 		//	BOUNDS CHECKING
-		if(this.onGround())	//	ON THE GROUND
+		if (this.onGround())	//	ON THE GROUND
 		{
 			this.y = canvas.height - this.height;
+			//this.x += SCROLL_SPEED;
 		}
-		if(this.onRightWall())	//	RIGHT BOUND
+		if (this.onRightWall())	//	RIGHT BOUND
 		{
 			this.x = canvas.width - this.width;
 		}
@@ -70,4 +78,10 @@ function Square(x, y, width, height)
 	{
 		console.log("No context has been defined");
 	};
+
+//Default: do nothing
+	this.collisionEvent = function()
+	{
+		console.log("Collision");
+	}
 }
