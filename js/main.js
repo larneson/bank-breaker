@@ -83,6 +83,17 @@ function init()
 
 }
 
+function reset()
+{
+	hero.x = 0;
+	hero.y = 0;
+	score = 0;
+	SCROLL_SPEED = -2;
+	hero.speed = 10;
+	hero.ay = 0;
+	applyGravity(hero, GRAVITY);
+}
+
 //	Main game loop
 function loop()
 {
