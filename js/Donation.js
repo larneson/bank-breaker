@@ -5,12 +5,12 @@ function Donation() {
   this.collisionEvent = function() {
 			score += 27;
 	}
-  this.vx = SCROLL_SPEED;
+  this.vx = SCROLL_SPEED * 2;
 
   this.update = function() {
     //	Apply velocity to position
 		this.x += this.vx;
-    this.vx = SCROLL_SPEED;
+    this.vx = SCROLL_SPEED * 2;
 
     if (this.x + this.height < 0)	//	remove if offscreen
 		{
