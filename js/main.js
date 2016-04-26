@@ -20,20 +20,21 @@ var max_score = 0;
 function keyDownHandler(event)
 {
 	var key = String.fromCharCode(event.keyCode);
+	console.log(key);
 
 	switch(key)
 	{
-		case "W":
+		case "W": case "&":
 			if (hero.onGround() == true) {
 				hero.vy = -20;
 			}
 			break;
-		case "S":
+		case "S": case "(":
 			break;
-		case "A":
+		case "A": case "%":
 			hero.vx = -hero.speed;
 			break;
-		case "D":
+		case "D": case "'":
 			hero.vx = hero.speed;
 			break;
 	}
@@ -45,14 +46,14 @@ function keyUpHandler(event)
 
 	switch(key)
 	{
-		case "W":
+		case "W":  case "&":
 			break;
-		case "S":
+		case "S": case "(":
 			break;
-		case "A":
+		case "A": case "%":
 			hero.vx = 0;
 			break;
-		case "D":
+		case "D": case "'":
 			hero.vx = 0;
 			break;
 	}
