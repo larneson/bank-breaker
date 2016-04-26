@@ -42,6 +42,8 @@ function keyDownHandler(event)
 
 function keyUpHandler(event)
 {
+
+	// sbasu
 	var key = String.fromCharCode(event.keyCode);
 
 	switch(key)
