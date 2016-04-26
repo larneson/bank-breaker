@@ -84,4 +84,8 @@ function Square(x, y, width, height, src)
 	{
 		console.log("Collision");
 	}
+	this.topCollisionEvent = function()
+	{
+		this.collisionEvent();
+	}
 }
