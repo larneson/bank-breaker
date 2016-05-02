@@ -1,6 +1,6 @@
 function Donation() {
   Square.apply(this, [canvas.width,
-    Math.floor(Math.random() * (canvas.height - 50)),45, 21, 'img/large_money.png']);
+    Math.floor(Math.random() * (canvas.height - 50)),45, 21, 'img/large_money.png', 'img/large_money.png']);
 
   this.collisionEvent = function() {
 			score += 27;
