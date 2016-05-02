@@ -127,7 +127,7 @@ function genRandoms()
 		actors.push(random_money);
 	}
 	if ((time / -2 * SCROLL_SPEED) % 500 == 0) {
-		if (trump_count == 10) {
+		if (trump_count == 5) {
 			random_obstacle = new TrumpBoss();
 			trump_count = 0;
 		} else {
@@ -166,7 +166,7 @@ function drawAll()
 	}
 	ctx.fillText("Score: " + score + "\nMax: " + max_score, 20, 20);
 	if (trump_count > 0) {
-		ctx.fillText(10 - trump_count + " Trump Towers left!", canvas.width - 80, 20);
+		ctx.fillText(5 - trump_count + " Trump Towers left!", canvas.width - 80, 20);
 	}
 
 	//	Call actors' draw methods
