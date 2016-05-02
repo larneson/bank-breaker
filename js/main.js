@@ -153,11 +153,16 @@ function updateAll()
 }
 
 //	Draws background and all actors on screen
+
+var background = new Image(); 
+background.src = "img/background.gif";
 function drawAll()
 {
 	//	Draw background
-	ctx.fillStyle = "black";
+	ctx.fillStyle = "blue";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.drawImage(background, 0, 0);
+	ctx.drawImage(background, background.width, 0);
 
 	//  Draw score
 	ctx.fillStyle = "white";
