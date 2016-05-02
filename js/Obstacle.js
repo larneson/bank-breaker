@@ -1,7 +1,7 @@
 function Obstacle() {
   var height = Math.floor(Math.random() * (150 - 50) + 50);
   Square.apply(this, [canvas.width, canvas.height - height,
-    100, height, 'img/building.png']);
+    100, height, 'img/building.png', 'img/building.png']);
 
   this.collisionEvent = function() {
 			reset();

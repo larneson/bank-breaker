@@ -77,7 +77,7 @@ function init()
 	//	Initialize actors
 
 	// Bernie
-	hero = new Square(0, 0, 150, 228, 'img/bernie_small.png');
+	hero = new Square(0, 0, 150, 228, 'img/Bernie.png', "img/BernieJumping.png");
 	applyDraw(hero);
 	applyGravity(hero, GRAVITY);
 	actors.push(hero);
@@ -161,7 +161,7 @@ function applyDraw(actor)
 {
 	actor.draw = function()
 	{
-		ctx.drawImage(actor.img, actor.x, actor.y);
+		ctx.drawImage(actor.currImage(), actor.x, actor.y);
 	};
 }
 
