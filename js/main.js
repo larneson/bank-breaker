@@ -20,6 +20,14 @@ var MAX_SCROLL_SPEED = -10;
 var jump_height = -20;
 var MAX_JUMP_HEIGHT = -30;
 var paused = false;
+var playing = true;
+
+
+
+var music = new Audio("img/icanhazvocal.mp3");
+if(playing == true){
+    music.play();
+}
 
 
 function keyDownHandler(event)
@@ -64,6 +72,8 @@ function keyUpHandler(event)
 	}
 }
 
+
+
 //	Initializes canvas and actors
 function init()
 {
@@ -75,6 +85,7 @@ function init()
 	canvas.height = TILE_S * ROWS;
 	canvas.setAttribute("tabIndex", "0");
 	canvas.focus();
+
 
 	canvas.addEventListener("keydown",keyDownHandler);
 	canvas.addEventListener("keyup",keyUpHandler);
@@ -96,6 +107,7 @@ function loop()
 	updateAll();
 	checkCollisions();
 	drawAll();
+
 	window.requestAnimationFrame(loop);
 	time += 1;
 
@@ -156,6 +168,7 @@ function updateAll()
 
 var background = new Image(); 
 background.src = "img/background.gif";
+
 function drawAll()
 {
 	//	Draw background
