@@ -15,6 +15,11 @@ var score = 0;
 var SCROLL_SPEED = -2;
 var time = 0;
 var max_score = 0;
+var trump_count = 0;
+var MAX_SCROLL_SPEED = -10;
+var jump_height = -20;
+var MAX_JUMP_HEIGHT = -30;
+var paused = false;
 
 
 function keyDownHandler(event)
@@ -25,7 +30,7 @@ function keyDownHandler(event)
 	{
 		case "W": case "&":
 			if (hero.onGround() == true) {
-				hero.vy = -20;
+				hero.vy = jump_height;
 			}
 			break;
 		case "S": case "(":
@@ -94,7 +99,7 @@ function loop()
 	window.requestAnimationFrame(loop);
 	time += 1;
 
-	if (score / 270 > -SCROLL_SPEED) {
+	if (score / 270 > -SCROLL_SPEED && SCROLL_SPEED > MAX_SCROLL_SPEED) {
 		SCROLL_SPEED -= 1;
 		hero.speed += 1;
 	}
@@ -110,6 +115,7 @@ function reset()
 	hero.vx = 0;
 	hero.vy = 0;
 	hero.ax = 0;
+	trump_count = 0;
 }
 
 // Generates random actors
@@ -120,8 +126,18 @@ function genRandoms()
 		applyDraw(random_money);
 		actors.push(random_money);
 	}
-	if (time % 750 == 0) {
-		random_obstacle = new Obstacle();
+	if ((time / -2 * SCROLL_SPEED) % 500 == 0) {
+		if (trump_count == 10) {
+			random_obstacle = new TrumpBoss();
+			trump_count = 0;
+		} else {
+			var rand = Math.random();
+			if (rand < 0.30) {
+				random_obstacle = new TrumpTowers();
+			} else {
+				random_obstacle = new Obstacle();
+			}
+		}
 		applyDraw(random_obstacle);
 		actors.push(random_obstacle);
 	}
@@ -149,6 +165,9 @@ function drawAll()
 		max_score = score;
 	}
 	ctx.fillText("Score: " + score + "\nMax: " + max_score, 20, 20);
+	if (trump_count > 0) {
+		ctx.fillText(10 - trump_count + " towers left!", canvas.width - 60, 20);
+	}
 
 	//	Call actors' draw methods
 	for (i = 0; i < actors.length; ++i) {
@@ -217,6 +236,10 @@ function main()
 {
 	init();
 	loop();
+}
+
+function togglePause(){
+	paused = !paused;
 }
 
 main();
