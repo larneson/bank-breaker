@@ -184,7 +184,7 @@ function drawAll()
 	}
 	ctx.fillText("Score: " + score + "\nMax: " + max_score, 20, 20);
 	if (trump_count > 0) {
-		ctx.fillText(5 - trump_count + " Trump Towers left!", canvas.width - 80, 20);
+		ctx.fillText(5 - trump_count + " Trump Towers left!", canvas.width - 100, 20);
 	}
 
 	//	Call actors' draw methods
