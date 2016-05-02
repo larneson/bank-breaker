@@ -21,7 +21,7 @@ function Obstacle() {
   }
 
   this.topCollisionEvent = function() {
-    score += 270;
+    score += 81;
   }
 
 }
