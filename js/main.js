@@ -20,7 +20,6 @@ var max_score = 0;
 function keyDownHandler(event)
 {
 	var key = String.fromCharCode(event.keyCode);
-	console.log(key);
 
 	switch(key)
 	{
@@ -169,24 +168,43 @@ function applyDraw(actor)
 function checkCollisions() {
 	var newActors = [hero];
 	for (i = 1; i < actors.length; ++i) {
-		if (((hero.x >= actors[i].x
-				&& hero.x <= actors[i].x + actors[i].width)
-			|| (hero.x + hero.width >= actors[i].x
-				&& hero.x + hero.width <= actors[i].x + actors[i].width)
-			|| (hero.x + hero.width >= actors[i].x + actors[i].width
-				&& hero.x <= actors[i].x))
-		&& ((hero.y > actors[i].y
-				&& hero.y < actors[i].y + actors[i].height)
-			|| (hero.y + hero.height > actors[i].y
-				&& hero.y + hero.height < actors[i].y + actors[i].height)
-			|| (hero.y + hero.height >= actors[i].y + actors[i].height
-				&& hero.y <= actors[i].y))) {
-						actors[i].collisionEvent();
+		if (isTopCollided(hero, actors[i])) {
+					actors[i].topCollisionEvent();
+
+		} else if (isCollided(hero, actors[i])) {
+							actors[i].collisionEvent();
 		} else {
 			newActors.push(actors[i]);
 		}
 	}
 	actors = newActors;
+}
+
+function isTopCollided(a1, a2){
+	return (((a1.x >= a2.x
+			&& a1.x <= a2.x + a2.width)
+		|| (a1.x + a1.width >= a2.x
+			&& a1.x + a1.width <= a2.x + a2.width)
+		|| (a1.x + a1.width >= a2.x + a2.width
+			&& a1.x <= a2.x))
+	&& (a1.y + a1.height > a2.y
+		&& a1.y + a1.height < a2.y + a2.height)
+	&& a1.vy >= 0);
+}
+
+function isCollided(a1, a2) {
+	return (((a1.x >= a2.x
+				&& a1.x <= a2.x + a2.width)
+			|| (a1.x + a1.width >= a2.x
+				&& a1.x + a1.width <= a2.x + a2.width)
+			|| (a1.x + a1.width >= a2.x + a2.width
+				&& a1.x <= a2.x))
+		&& ((a1.y > a2.y
+				&& a1.y < a2.y + a2.height)
+			|| (a1.y + a1.height > a2.y
+				&& a1.y + a1.height < a2.y + a2.height)
+			|| (a1.y + a1.height >= a2.y + a2.height
+				&& a1.y <= a2.y)))
 }
 
 function applyGravity(actor, grav)
