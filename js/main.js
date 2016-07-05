@@ -20,6 +20,10 @@ var MAX_SCROLL_SPEED = -10;
 var jump_height = -20;
 var MAX_JUMP_HEIGHT = -30;
 var paused = false;
+var costumeNames = ["Bernie", "Hillary", "Jeb", "Trump"];
+var costumeIndex = 0;
+var costumes = [];
+var jumpCostumes = [];
 
 
 function keyDownHandler(event)
@@ -41,6 +45,8 @@ function keyDownHandler(event)
 		case "D": case "'":
 			hero.vx = hero.speed;
 			break;
+		case "1":
+			switchCostume();
 	}
 }
 
@@ -87,6 +93,25 @@ function init()
 	applyGravity(hero, GRAVITY);
 	actors.push(hero);
 
+	makeCostumes();
+
+}
+
+function makeCostumes() {
+	for (i = 0; i < costumeNames.length; i++) {
+		costumes[i] = new Image();
+		costumes[i].src = "img/" + costumeNames[i] + ".png";
+		jumpCostumes[i] = new Image();
+		jumpCostumes[i].src = "img/" + costumeNames[i] + "Jumping.png";
+	}
+}
+
+//switch characters
+function switchCostume()
+{
+	costumeIndex = (costumeIndex + 1) % costumes.length;
+	hero.img = costumes[costumeIndex];
+	hero.jumpImg = jumpCostumes[costumeIndex];
 }
 
 //	Main game loop
