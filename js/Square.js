@@ -1,8 +1,12 @@
-function Square(x, y, width, height, src)
+function Square(x, y, width, height, src, src2)
 {
 	// Image
 	this.img = new Image();
 	this.img.src = src;
+
+	this.jumpImg = new Image();
+	this.jumpImg.src = src2;
+
 
 	//	Size variables
 	this.width = width;
@@ -83,5 +87,18 @@ function Square(x, y, width, height, src)
 	this.collisionEvent = function()
 	{
 		console.log("Collision");
+	}
+	this.topCollisionEvent = function()
+	{
+		this.collisionEvent();
+	}
+
+	this.currImage = function()
+	{
+		if (this.onGround()){
+			return this.img;
+		} else {
+			return this.jumpImg;
+		}
 	}
 }
